@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { FileDown, Calendar, FileText, FileSpreadsheet } from 'lucide-react';
-import { baseurl } from '../../Utils/network';
+import { baseURL } from '../../Utils/Network';
 import { DateANdTimeOptions } from '../../Utils';
 
 interface Template {
@@ -26,7 +26,7 @@ const DownloadTemplates: React.FC = () => {
     const fetchTemplates = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`${baseurl}/templates`);
+        const response = await axios.get(`${baseURL}/templates`);
         setTemplates(response.data);
       } catch (error) {
         toast.error('Failed to fetch templates. Please try again later.');
@@ -69,7 +69,7 @@ const DownloadTemplates: React.FC = () => {
       toast.success(`Downloading ${template.name}...`);
   
       // Log the download
-      await axios.post(`${baseurl}/templates/download-log`, { templateId: template._id });
+      await axios.post(`${baseURL}/templates/download-log`, { templateId: template._id });
   
       // Fetch the file as a blob
       const response = await axios.get(template.fileUrl, {

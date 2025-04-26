@@ -4,7 +4,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useAuth } from '../../context/AuthContext';
 import { User, Mail, Phone, Lock, Save } from 'lucide-react';
-import { baseurl } from '../../Utils/network';
+import { baseURL } from '../../Utils/Network';
 
 interface ProfileFormData {
   name: string;
@@ -42,7 +42,7 @@ const UserProfile: React.FC = () => {
       // Fetch additional user details
       const fetchUserDetails = async () => {
         try {
-          const response = await axios.get(`${baseurl}/users/profile/${user.id}`);
+          const response = await axios.get(`${baseURL}/users/profile/${user.id}`);
           reset({
             name: response.data.name,
             email: response.data.email,
@@ -63,7 +63,7 @@ const UserProfile: React.FC = () => {
       
       if (isPasswordUpdate) {
         // Update password
-        await axios.put(`${baseurl}/users/password`, {
+        await axios.put(`${baseURL}/users/password`, {
           currentPassword: data.currentPassword,
           newPassword: data.newPassword,
         });
@@ -73,7 +73,7 @@ const UserProfile: React.FC = () => {
         reset({ currentPassword: '', newPassword: '', confirmPassword: '' });
       } else {
         // Update profile
-        await axios.put(`${baseurl}/users/profile`, {
+        await axios.put(`${baseURL}/users/profile`, {
           name: data.name,
           email: data.email,
           phone: data.phone,

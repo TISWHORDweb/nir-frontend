@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
 import { Users, FileText, ClipboardList, ArrowUpRight, BarChart2 } from 'lucide-react';
-import { baseurl } from "../../Utils/network.tsx";
+import { baseURL } from "../../Utils/Network";
+import SystemOverview from '../overviewChart';
 
 
 interface DashboardStats {
@@ -29,7 +30,7 @@ const AdminDashboard: React.FC = () => {
     const fetchDashboardStats = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`${baseurl}/admin/dashboard`);
+        const response = await axios.get(`${baseURL}/admin/dashboard`);
         setStats(response.data);
       } catch (error) {
         console.error('Error fetching dashboard stats:', error);
@@ -177,17 +178,11 @@ const AdminDashboard: React.FC = () => {
         </div>
 
         <div className="bg-white rounded-lg shadow overflow-hidden">
-          <div className="px-6 py-4 border-b border-gray-200">
-            <h2 className="text-lg font-medium text-gray-900">System Overview</h2>
-          </div>
-          <div className="p-6">
-            <div className="flex items-center justify-center h-48">
-              <BarChart2 size={120} className="text-gray-300" />
-            </div>
-            <div className="text-center text-gray-500 mt-4">
-              <p>Detailed analytics will be available soon.</p>
-            </div>
-          </div>
+        <SystemOverview
+        totalUsers={stats?.totalUsers || 0}
+        totalTemplates={stats?.totalTemplates || 0}
+        pendingSubmissions={stats?.pendingSubmissions || 0}
+      />
         </div>
       </div>
 

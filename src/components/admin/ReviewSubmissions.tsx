@@ -15,7 +15,7 @@ import {
   FileText,
   X
 } from 'lucide-react';
-import { baseurl } from "../../Utils/network.tsx";
+import { baseURL } from "../../Utils/Network";
 
 interface Submission {
   _id: string;
@@ -50,7 +50,7 @@ const ReviewSubmissions: React.FC = () => {
   const fetchSubmissions = async (page = 1, search = '', status = 'all') => {
     try {
       setLoading(true);
-      const response = await axios.get(`${baseurl}/admin/submissions?page=${page}&search=${search}&status=${status}`);
+      const response = await axios.get(`${baseURL}/admin/submissions?page=${page}&search=${search}&status=${status}`);
       setSubmissions(response.data.submissions);
       setTotalPages(response.data.totalPages);
       setCurrentPage(response.data.currentPage);
@@ -92,7 +92,7 @@ const ReviewSubmissions: React.FC = () => {
     if (!currentSubmission) return;
     
     try {
-      await axios.put(`${baseurl}/admin/submissions/${currentSubmission._id}/approve`, {
+      await axios.put(`${baseURL}/admin/submissions/${currentSubmission._id}/approve`, {
         reviewComments: reviewComment
       });
       
@@ -113,7 +113,7 @@ const ReviewSubmissions: React.FC = () => {
     }
     
     try {
-      await axios.put(`${baseurl}/admin/submissions/${currentSubmission._id}/reject`, {
+      await axios.put(`${baseURL}/admin/submissions/${currentSubmission._id}/reject`, {
         reviewComments: reviewComment
       });
       

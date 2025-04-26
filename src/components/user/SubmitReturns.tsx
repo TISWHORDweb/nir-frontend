@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Upload, X, FileText, Plus, CheckCircle } from 'lucide-react';
-import { baseurl } from "../../Utils/network.tsx";
+import { baseURL } from "../../Utils/Network";
 
 interface SubmitFormData {
   templateType: string;
@@ -34,7 +34,7 @@ const SubmitReturns: React.FC = () => {
   useEffect(() => {
     const fetchTemplateTypes = async () => {
       try {
-        const response = await axios.get(`${baseurl}/templates/types`);
+        const response = await axios.get(`${baseURL}/templates/types`);
         setTemplates(response.data);
       } catch (error) {
         toast.error('Failed to fetch template types. Please try again later.');
@@ -80,7 +80,7 @@ const SubmitReturns: React.FC = () => {
       }
 
       // Submit the form
-      await axios.post(`${baseurl}/submissions`, formData, {
+      await axios.post(`${baseURL}/submissions`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
