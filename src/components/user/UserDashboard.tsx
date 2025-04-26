@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
 import { FileDown, Upload, Clock, CheckCircle, AlertCircle } from 'lucide-react';
-import { baseURL } from '../../Utils/Network';
+import { baseURL } from '../../Utils/network';
 
 interface Submission {
   _id: string;
