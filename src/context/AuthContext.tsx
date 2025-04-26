@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
-import { baseURL } from "../Utils/network.tsx";
+import { baseurl } from '../Utils/network';
+// import { baseurl } from "../Utils/network.tsx";
 
 interface User {
   id: string;
@@ -63,7 +64,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const login = async (nstin: string, password: string) => {
     try {
       setLoading(true);
-      const response = await axios.post(`${baseURL}/auth/login`, { nstin, password });
+      const response = await axios.post(`${baseurl}/auth/login`, { nstin, password });
       const { token } = response.data;
       
       localStorage.setItem('token', token);
@@ -88,7 +89,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const enroll = async (userData: any) => {
     try {
       setLoading(true);
-      const response = await axios.post(`${baseURL}/auth/enroll`, userData);
+      const response = await axios.post(`${baseurl}/auth/enroll`, userData);
       const { token } = response.data;
       
       localStorage.setItem('token', token);

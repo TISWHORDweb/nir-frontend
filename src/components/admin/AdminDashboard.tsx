@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
 import { Users, FileText, ClipboardList, ArrowUpRight, BarChart2 } from 'lucide-react';
-import { baseURL } from "../../Utils/network.tsx";
+import { baseurl } from "../../Utils/network.tsx";
 
 
 interface DashboardStats {
@@ -29,7 +29,7 @@ const AdminDashboard: React.FC = () => {
     const fetchDashboardStats = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`${baseURL}/admin/dashboard`);
+        const response = await axios.get(`${baseurl}/admin/dashboard`);
         setStats(response.data);
       } catch (error) {
         console.error('Error fetching dashboard stats:', error);

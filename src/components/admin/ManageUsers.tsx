@@ -13,7 +13,7 @@ import {
   ChevronLeft, 
   ChevronRight 
 } from 'lucide-react';
-import { baseURL } from "../../Utils/network.tsx";
+import { baseurl } from "../../Utils/network.tsx";
 
 interface User {
   _id: string;
@@ -56,7 +56,7 @@ const ManageUsers: React.FC = () => {
   const fetchUsers = async (page = 1, search = '') => {
     try {
       setLoading(true);
-      const response = await axios.get(`${baseURL}/admin/users?page=${page}&search=${search}`);
+      const response = await axios.get(`${baseurl}/admin/users?page=${page}&search=${search}`);
       setUsers(response.data.users);
       setTotalPages(response.data.totalPages);
       setCurrentPage(response.data.currentPage);
@@ -125,7 +125,7 @@ const ManageUsers: React.FC = () => {
     if (!userToDelete) return;
     
     try {
-      await axios.delete(`${baseURL}/admin/users/${ userToDelete._id}`);
+      await axios.delete(`${baseurl}/admin/users/${ userToDelete._id}`);
       toast.success('User deleted successfully!');
       fetchUsers(currentPage, searchTerm);
       closeDeleteModal();
@@ -138,7 +138,7 @@ const ManageUsers: React.FC = () => {
     try {
       if (isEditing && currentUser) {
         // Update existing user
-        await axios.put(`${baseURL}/admin/users/${currentUser._id}`, {
+        await axios.put(`${baseurl}/admin/users/${currentUser._id}`, {
           name: data.name,
           email: data.email,
           phone: data.phone,
@@ -149,7 +149,7 @@ const ManageUsers: React.FC = () => {
         toast.success('User updated successfully!');
       } else {
         // Create new user
-        await axios.post(`${baseURL}/admin/users`, data);
+        await axios.post(`${baseurl}/admin/users`, data);
         toast.success('User created successfully!');
       }
       

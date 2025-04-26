@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
 import { FileDown, Upload, Clock, CheckCircle, AlertCircle } from 'lucide-react';
-import { baseURL } from '../../Utils/network';
+import { baseurl } from '../../Utils/network';
 
 interface Submission {
   _id: string;
@@ -24,11 +24,11 @@ const UserDashboard: React.FC = () => {
         setLoading(true);
         
         // Fetch recent submissions
-        const submissionsResponse = await axios.get(`${baseURL}/submissions/recent`);
+        const submissionsResponse = await axios.get(`${baseurl}/submissions/recent`);
         setRecentSubmissions(submissionsResponse.data);
         
         // Fetch available templates count
-        const templatesResponse = await axios.get(`${baseURL}/templates/count`);
+        const templatesResponse = await axios.get(`${baseurl}/templates/count`);
         setAvailableTemplates(templatesResponse.data.count);
       } catch (error) {
         console.error('Error fetching dashboard data:', error);

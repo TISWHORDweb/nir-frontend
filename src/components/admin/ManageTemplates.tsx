@@ -12,7 +12,7 @@ import {
   X,
   Plus
 } from 'lucide-react';
-import { baseURL } from "../../Utils/network.tsx";
+import { baseurl } from "../../Utils/network.tsx";
 import { DateANdTimeOptions } from '../../Utils/index.tsx';
 
 interface Template {
@@ -58,7 +58,7 @@ const ManageTemplates: React.FC = () => {
   const fetchTemplates = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${baseURL}/templates`);
+      const response = await axios.get(`${baseurl}/templates`);
       setTemplates(response.data);
     } catch (error) {
       toast.error('Failed to fetch templates. Please try again later.');
@@ -103,7 +103,7 @@ const ManageTemplates: React.FC = () => {
     if (!templateToDelete) return;
 
     try {
-      await axios.delete(`${baseURL}/templates/${templateToDelete._id}`);
+      await axios.delete(`${baseurl}/templates/${templateToDelete._id}`);
       toast.success('Template deleted successfully!');
       fetchTemplates();
       closeDeleteModal();
@@ -127,7 +127,7 @@ const ManageTemplates: React.FC = () => {
       formData.append('version', data.version);
       formData.append('file', selectedFile);
 
-      await axios.post(`${baseURL}/templates`, formData, {
+      await axios.post(`${baseurl}/templates`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
